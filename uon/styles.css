@@ -1,0 +1,45 @@
+* {margin: 0; padding: 0;}
+
+header {background-color: #303030; height: 80px; }
+
+header section {display: block; width: 50%; float: left;}
+section h1 {font-size: 65px; color: white; text-align: center;}
+
+section input {margin: 40px 0 0 250px; border: none; font-size: 15px;}
+
+
+nav {width: 100%; background-color: #007061; overflow: auto;}
+nav ul {width: 1000px; margin: auto; display: block; list-style-type: none;}
+nav ul li {width: 20%; float: left; overflow: auto; text-align: center;}
+nav a {color: white; padding-top: 5px; padding-bottom: 5px; display: block; text-decoration: none;}
+nav a:hover{color:#303030;}
+
+/*main {display: table;}*/
+main {min-height: 50vh; background-color: #ddd; width: 90vw; display: block; margin: auto; box-shadow: 0px 0px 10px #888; color:#444;}
+body > img {display: block; width: 100%;}
+main > article {display: table-cell; padding: 2em;}
+main > article p{margin-top: 10px; line-height: 1.5;}
+main > nav {display: table-cell; width: 20%; padding: 2em;}
+main > nav ul {width: auto;}
+main > nav li {float: none; width: auto; text-align: left; margin-bottom: 8px;}
+
+form {padding-top: 1em; margin-top: 1.5em; border-top: 2px dashed #007061;}
+form select, form label, form input, form textarea {float: left; width: 200px; padding: 5px; margin-top: 20px;}
+form label {clear: left;}
+textarea {height: 100px;}
+form input[type="text"], form input[type="password"], textarea {color: #999; font-family: verdana, sans-serif}
+input[type="submit"] {clear: both; margin-left: 210px; width: 215px;}
+form input[type="radio"]{margin-left: -100px; width: 200px; margin-left: 3%;}
+form #enAs{clear: none; width: 100%;}
+form label[for="staff"], form label[for="student"]{width: 70%; clear: none; margin-top: 10px;}
+
+section a {color: #444;}
+
+form select {width: 220px;}
+main > article table {border-collapse: collapse; border: 2px; text-align: center; background-color: #c2c2c2; border-radius: 5px;} 
+main > article th,td {border: 1px solid #ddd; list-style: none; padding: 30px;}
+main > article a{text-decoration: none; display: block;}
+
+body .login{background-color: #ddd; height: 300px; width:500px; top: 50%; left: 50%; margin-left: 30%; margin-top: 10%; padding: 20px; border-radius: 3px; box-shadow: 2px 2px 10px  black;}
+
+footer {background-color: #303030; color: white; padding: 10px;}

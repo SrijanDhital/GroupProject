@@ -1,0 +1,74 @@
+<?php
+
+session_start();
+
+$title = 'Add Staff';
+
+//Connection to database
+require 'functions/connection.php';
+
+
+$content = '
+	<h2>Add a Staff</h2>
+	
+	<article>
+
+		<form class="form" action="addStaff.php" method="post">
+		
+			<label>Firstname:</label>
+				<input type="text" name="firstname" required />
+			<label>Lastname:</label>
+				<input type="text" name="lastname" required />
+			<label>E-mail address:</label>
+				<input type="text" placeholder="user@exampe.com" name="email" required />
+			<label>Username:</label>
+				<input type="text" placeholder="EdwardJobs" name="username" required />
+			<label>Password:</label>
+				<input type="password" placeholder="**********" name="password" required />
+			<label>Confirm Password:</label>
+				<input type="password" placeholder="**********" name="password2" required />
+
+			<input type="submit" value="Submit" name="submit" />
+		</form>
+	</article>
+			';
+
+if (isset($_POST['firstname'], $_POST ['lastname'], $_POST['email'], $_POST['username'], $_POST['password'], $_POST['password2'])) {
+
+  	//Check to see if passwords match - IF not user account will not be created.
+  	if ($_POST['password'] == $_POST['password2']) {
+
+
+
+		//prepare statement to insert user information into users table
+		$stmt = $pdo->prepare('INSERT INTO staffs (firstname, lastname, email, username, password)
+															VALUES ( :firstname, :lastname, :email, :username, :password)');
+
+		$criteria = [
+			'firstname'=> $_POST['firstname'],
+			'lastname'=>	$_POST['lastname'],
+			'email'=> $_POST['email'],
+			'username' => $_POST['username'],
+			'password'=> $_POST['password']
+		];
+
+		unset($_POST['submit']);
+		$stmt -> execute($criteria);
+
+		echo '<script type="text/javascript">
+		alert("Staff ' . $_POST['username'] . ' has been successfully added");
+		</script>';
+  		// echo "Staff " . $_POST['username'] . " has been successfully added";
+
+  	}
+  	else{
+  		echo '<script type="text/javascript">
+		alert("The passwords did not match. Please try again!");
+		</script>';
+  	}
+  				
+
+  } //End of submit IF
+
+  require 'layout.php';
+?>
