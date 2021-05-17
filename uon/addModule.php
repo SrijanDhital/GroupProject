@@ -70,6 +70,8 @@ if (isset($_POST['id'], $_POST ['name'], $_POST['staff'], $_POST['year'])) {
 		unset($_POST['submit']);
 		$stmt -> execute($criteria);
 
+		mkdir('files/' . $_POST['id'], 0700);
+
 		echo '<script type="text/javascript">
 		alert("Module ' . $_POST['id'] . ' has been successfully added");
 		</script>';
