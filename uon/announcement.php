@@ -1,4 +1,10 @@
 <?php
+session_start();
+	
+	$title = 'Announcements';
+
+	$content = '<h2>All Announcements</h2>';
+	
 	$year = $_SESSION['year'];
 	$sId = $_SESSION['staff_id'];
 
@@ -6,15 +12,18 @@
 
 	$stmt = $pdo-> prepare('SELECT topic, description, students.year, staffs.username as sName, modules.module_id as mId, modules.module_name FROM modules, announcements, students, staffs WHERE staffs.staff_id=announcements.staff_id AND staffs.staff_id=modules.staff_id AND modules.year=students.year AND students.year=announcements.year ORDER BY announcements.announcement_id DESC');
 
-	$rows = $stmt->execute();
-	$announcements = $rows -> fetch_assoc();
+	$stmt->execute();
+	$announcements = $stmt -> fetch(PDO::FETCH_ASSOC);
 
-	foreach ($announcements as $announcement) {
-		echo '<h2>' . $announcement['sName'] . '</h2>';
-		echo '<h2>' . $announcement['mId'] . '-' . $announcement['module_name'] . '</h2>';
+	foreach ($stmt as $announcement) {
+		$content = $content . 
+		'<h2>' . $announcement['sName'] . '</h2>
+		<h2>' . $announcement['mId'] . '-' . $announcement['module_name'] . '</h2>
 
-		echo '<h3>' . $announcement['topic'] . '</h3>';
-		echo '<p>' . $announcement['description'] . '</p>';
-		echo '<center>------------------------------------------------------------------</center>';
+		<h3>' . $announcement['topic'] . '</h3>
+		<p>' . $announcement['description'] . '</p>
+		<center>------------------------------------------------------------------</center>';
 	}
+
+	require 'layout.php';
 ?>

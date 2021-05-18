@@ -55,12 +55,26 @@ if(isset($_SESSION['logged_as_admin']) && $_SESSION['logged_as_admin']==true){
 			];
 
 			unset($_POST['submit']);
-			$stmt -> execute($criteria);
+			try{
+				$stmt -> execute($criteria);
 
-			echo '<script type="text/javascript">
-			alert("Admin ' . $_POST['username'] . ' has been successfully added");
-			</script>';
-	  		// echo "Admin " . $_POST['username'] . " has been successfully added";
+				echo '<script type="text/javascript">
+				alert("Admin ' . $_POST['username'] . ' has been successfully added");
+				</script>';
+		  		// echo "Admin " . $_POST['username'] . " has been successfully added";
+
+			} catch (PDOException $e) {
+			   if ($e->errorInfo[1] == 1062) {
+			      echo '<script type="text/javascript">
+					alert("The email or username already exists.");
+					</script>';
+			   } else {
+			      echo '<script type="text/javascript">
+					alert("Error from: ' . $e->getMessage() . '");
+					</script>';
+			   }
+			}
+
 
 	  	}
 	  	else{
@@ -71,6 +85,7 @@ if(isset($_SESSION['logged_as_admin']) && $_SESSION['logged_as_admin']==true){
 	  				
 
 	} //End of submit IF
+
 
 	require 'layout.php';
 }

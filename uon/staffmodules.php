@@ -1,28 +1,38 @@
 <?php
 session_start();
 
+if(isset($_SESSION['logged_as_staff']) && ($_SESSION['logged_as_staff'] ==true)){
 require 'functions/connection.php';
 
 
 $title = 'My Modules';
+
+$content = '<h2>My Modules</h2><article>';
+
 	$staff = $_SESSION['staff_id'];
 
-	$stmt = $pdo->prepare('SELECT *FROM modules WHERE staff_id = "' . $staff . '"');
+	$results = $pdo->prepare('SELECT *FROM modules WHERE staff_id ="' . $staff . '"');
 
-	$rows = $stmt->execute();
+	$results->execute();
 
-	$modules = $stmt->fetchAll();
+	$modules = $results->rowCount();
 
-	if(count($modules) > 0){
-
-		foreach ($modules as $module)
+	if($modules > 0){
+		$content = $content . '<ul>';
+		foreach($results as $row)
 		{
-			$content = '<li><a href = "staffmodules?module=' . $module['module_id'] . '.php">' . $module['module_id'] . '-' . $module['module_name'] . '</a></li><br>';
+			$content = $content . '<li><a href = "staffmodules?row=' . $row['module_id'] . '.php">=> ' . $row['module_id'] . ' - ' . $row['module_name'] . '</a></li><br>';
 		}
+		$content = $content . '</ul></article>';
 	}
 	else{
-		$content = 'Sorry, no content to display.';
+		$content = $content . '<h3>Sorry, no content to display.</h3>';
 	}
 
 	require 'layout.php';
+
+}
+else{
+	header("Location: login.php");
+}
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2021 at 07:43 AM
+-- Generation Time: May 18, 2021 at 04:44 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -54,8 +54,16 @@ CREATE TABLE `announcements` (
   `topic` varchar(40) NOT NULL,
   `description` varchar(2000) NOT NULL,
   `staff_id` int(11) NOT NULL,
-  `year` varchar(15) NOT NULL
+  `year` varchar(15) NOT NULL,
+  `posted_date` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `announcements`
+--
+
+INSERT INTO `announcements` (`announcement_id`, `topic`, `description`, `staff_id`, `year`, `posted_date`) VALUES
+(2, 'New Web Announcement', 'Dear students, I have posted a new file for all of you.', 5, 'L5', 'May 18,2021');
 
 -- --------------------------------------------------------
 
@@ -75,7 +83,9 @@ CREATE TABLE `modules` (
 --
 
 INSERT INTO `modules` (`module_id`, `module_name`, `staff_id`, `year`) VALUES
-('CSY1014', 'Computer System', 4, 'L4');
+('CSY1014', 'Computer System', 4, 'L4'),
+('CSY2027', 'Group Project', 4, 'L5'),
+('CSY2028', 'Web Programming', 5, 'L5');
 
 -- --------------------------------------------------------
 
@@ -97,7 +107,8 @@ CREATE TABLE `staffs` (
 --
 
 INSERT INTO `staffs` (`staff_id`, `firstname`, `lastname`, `email`, `username`, `password`) VALUES
-(4, 'Suresh', 'Gautam', 'gautamsuresh@gmail.com', 'SureshGautam1', 'suresh');
+(4, 'Suresh', 'Gautam', 'gautamsuresh@gmail.com', 'SureshGautam1', 'suresh'),
+(5, 'Ankit', 'Thapa', 'ankitthapa1@gmail.com', 'ThapaAnkit', 'ankit');
 
 -- --------------------------------------------------------
 
@@ -129,7 +140,9 @@ INSERT INTO `students` (`student_id`, `firstname`, `lastname`, `email`, `year`, 
 -- Indexes for table `admins`
 --
 ALTER TABLE `admins`
-  ADD PRIMARY KEY (`admin_id`);
+  ADD PRIMARY KEY (`admin_id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `announcements`
@@ -147,13 +160,16 @@ ALTER TABLE `modules`
 -- Indexes for table `staffs`
 --
 ALTER TABLE `staffs`
-  ADD PRIMARY KEY (`staff_id`);
+  ADD PRIMARY KEY (`staff_id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
-  ADD PRIMARY KEY (`student_id`);
+  ADD PRIMARY KEY (`student_id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -163,19 +179,19 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
-  MODIFY `announcement_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `announcement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `staffs`
 --
 ALTER TABLE `staffs`
-  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `students`

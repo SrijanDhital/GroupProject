@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+if(isset($_SESSION['logged_as_admin']) && $_SESSION['logged_as_admin'] == true){
 $title = 'Add Staff';
 
 //Connection to database
@@ -53,12 +53,26 @@ if (isset($_POST['firstname'], $_POST ['lastname'], $_POST['email'], $_POST['use
 		];
 
 		unset($_POST['submit']);
+
+		try{
 		$stmt -> execute($criteria);
 
 		echo '<script type="text/javascript">
 		alert("Staff ' . $_POST['username'] . ' has been successfully added");
 		</script>';
   		// echo "Staff " . $_POST['username'] . " has been successfully added";
+
+  		} catch (PDOException $e) {
+			   if ($e->errorInfo[1] == 1062) {
+			      echo '<script type="text/javascript">
+					alert("The email or username already exists.");
+					</script>';
+			   } else {
+			      echo '<script type="text/javascript">
+					alert("Error from: ' . $e->getMessage() . '");
+					</script>';
+			   }
+			}
 
   	}
   	else{
@@ -71,4 +85,10 @@ if (isset($_POST['firstname'], $_POST ['lastname'], $_POST['email'], $_POST['use
   } //End of submit IF
 
   require 'layout.php';
+
+}
+else{
+	// echo 'Please login as an admin first.';
+	header("Location: login.php");
+}
 ?>

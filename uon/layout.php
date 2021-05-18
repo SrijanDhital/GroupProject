@@ -12,9 +12,7 @@
 			<section>
 				<h1>UoN</h1>
 			</section>
-			<section>
-				<input type="text" name="search" placeholder="Search...">
-			</section>
+			
 		</header>
 		<nav>
 			<ul>
@@ -50,26 +48,24 @@
 					if(isset($_SESSION['logged_as_student']) && ($_SESSION['logged_as_student'] == true))
 					{
 
-						echo '<li><a href="studenthome.php">Home</a></li>
-						<li><a href="profile.php">Profile</a></li>
+						echo '<li><a href="index.php">Home</a></li>
 						<li><a href="students.php">My modules</a></li>
 						<li><a href="announcement.php">Announcements</a></li>
 						<li><a href="logout.php">Logout</a></li>';
 					}
 
-					if(isset($_SESSION['logged_as_staff']) && ($_SESSION['logged_as_staff'] ==true))
+					else if(isset($_SESSION['logged_as_staff']) && ($_SESSION['logged_as_staff'] ==true))
 					{
-						echo '<li><a href="staffhome.php">Home</a></li>
-						<li><a href="profile.php">Profile</a></li>
+						echo '<li><a href="index.php">Home</a></li>
 						<li><a href="staffModules.php">Modules</a></li>
 						<li><a href="uploadfile.php">Upload File</a></li>
-						<li><a href="announcement.php">Post an Announcement</a></li>
+						<li><a href="staffAnnouncement.php">All Announcements</a></li>
 						<li><a href="logout.php">Logout</a></li>';
 					}
 					//sidebar items to show when admin is logged in
 					else if(isset($_SESSION['logged_as_admin']) && $_SESSION['logged_as_admin'] == true){
 						echo '
-						<li><a href="adminhome.php">Admin Page</a><li>
+						<li><a href="index.php">Admin Page</a><li>
 						<li><a href="addStudent.php">Add a student</a></li>
 					    <li><a href="addStaff.php">Add a Staff</a></li>
 					    <li><a href="addAdmin.php">Add an Admin</a></li>

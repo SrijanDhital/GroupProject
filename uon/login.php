@@ -5,7 +5,7 @@
 	require 'functions/connection.php';
 
 	$loginform = '
-	<h2>Login to Northampton News</h2>
+	<h2>Login to Northampton</h2>
 	<article>
 	<form class="form" action="login.php" method="post">
 		<label>Username:</label>

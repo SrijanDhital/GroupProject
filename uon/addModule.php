@@ -2,6 +2,7 @@
 
 session_start();
 
+if(isset($_SESSION['logged_as_admin']) && $_SESSION['logged_as_admin'] == true){
 $title = 'Add Module';
 
 //Connection to database
@@ -68,6 +69,8 @@ if (isset($_POST['id'], $_POST ['name'], $_POST['staff'], $_POST['year'])) {
 		];
 
 		unset($_POST['submit']);
+
+		try{
 		$stmt -> execute($criteria);
 
 		mkdir('files/' . $_POST['id'], 0700);
@@ -76,9 +79,26 @@ if (isset($_POST['id'], $_POST ['name'], $_POST['staff'], $_POST['year'])) {
 		alert("Module ' . $_POST['id'] . ' has been successfully added");
 		</script>';
   		// echo "Student " . $_POST['email'] . " has been successfully added";
+
+  		} catch (PDOException $e) {
+			   if ($e->errorInfo[1] == 1062) {
+			      echo '<script type="text/javascript">
+					alert("The email or username already exists.");
+					</script>';
+			   } else {
+			      echo '<script type="text/javascript">
+					alert("Error from: ' . $e->getMessage() . '");
+					</script>';
+			   }
+			}
   				
 
   } //End of submit IF
 
   require 'layout.php';
+  
+}else
+{
+	header("Location: login.php");
+}
 ?>

@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+if(isset($_SESSION['logged_as_staff']) && ($_SESSION['logged_as_staff'] ==true)){
 require 'functions/connection.php';
 $title = 'Upload a file';
 
@@ -74,4 +76,9 @@ $content = '
 // }
 
 require 'layout.php';
+
+}else
+{
+	header("Location: login.php");
+}
 ?>
