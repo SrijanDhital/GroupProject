@@ -17,9 +17,14 @@
 			$query = $pdo->prepare('SELECT *FROM announcements WHERE staff_id="' . $staff . '" ORDER BY posted_date DESC');
 			$query->execute();
 			
-			$announcement = $query->fetch(PDO::FETCH_ASSOC);
+			if($announcement = $query->fetch(PDO::FETCH_ASSOC)){
 				$content = $content . '<section><h3 style=color:#007061>' . $announcement['topic'] . '</h3>
 				<p>' . $announcement['description'] . '</p></section>';
+			}
+			else{
+				$content = $content . '<h3>No Announcements Yet</h3>';
+			}
+			
 			
 		}
 		else {

@@ -7,8 +7,14 @@ $title = 'Upload a file';
 
 $content = '
 <h2>Upload a file</h2>
+<li><a href="deletefile.php">Delete a file</a></li>
 <article>
 	<form class="form" action="uploadfile.php" method="POST" enctype="multipart/form-data">
+		<label>Title:</label>
+		<input type="text" name="title" />
+
+		<label>Description:</label>
+		<textarea name="description"></textarea>
 		<label>Module:</label>
 			<select name="module">
 			<option value="" disabled selected>Please Select</option>';
@@ -30,12 +36,14 @@ $content = '
 
 		<input type="submit" value="Upload" name="submit" />
 	</form>
-</article>';
+	
+</article>
+';
 
 
 // if(isset($_POST['submit'])){
 	//$file = $_FILES['file'];
-	if(isset($_POST['module'])){
+	if(isset($_POST['title'], $_POST['description'], $_POST['module'])){
 
 		$filename = $_FILES['file']['name'];
 		$fileextension = strtolower(substr($filename, strpos($filename, '.') +1));
@@ -50,6 +58,17 @@ $content = '
 					$location = 'files/' . $_POST['module'] . '/';
 
 					if(move_uploaded_file($tmp_dir, $location . $filename)){
+
+						$stmt = $pdo->prepare('INSERT INTO module_contents (title, description, file_location) VALUES(:title, :description, :file_location)');
+
+						$criteria = [
+							'title' => $_POST['title'],
+							'description' => $_POST['description'],
+							'file_location' => $location . $filename
+						];
+
+						$stmt->execute($criteria);
+
 						// echo 'File has been successfully uploaded.';
 						echo '<script type="text/javascript">
 						alert("The file has been added successfully");

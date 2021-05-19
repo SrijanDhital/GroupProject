@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2021 at 04:44 PM
+-- Generation Time: May 19, 2021 at 05:18 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -90,6 +90,19 @@ INSERT INTO `modules` (`module_id`, `module_name`, `staff_id`, `year`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `module_contents`
+--
+
+CREATE TABLE `module_contents` (
+  `content_id` int(5) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `description` varchar(1000) NOT NULL,
+  `file_location` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `staffs`
 --
 
@@ -157,6 +170,13 @@ ALTER TABLE `modules`
   ADD PRIMARY KEY (`module_id`);
 
 --
+-- Indexes for table `module_contents`
+--
+ALTER TABLE `module_contents`
+  ADD PRIMARY KEY (`content_id`),
+  ADD UNIQUE KEY `file_location` (`file_location`);
+
+--
 -- Indexes for table `staffs`
 --
 ALTER TABLE `staffs`
@@ -186,6 +206,12 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `announcements`
   MODIFY `announcement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `module_contents`
+--
+ALTER TABLE `module_contents`
+  MODIFY `content_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `staffs`
