@@ -12,6 +12,7 @@ require 'functions/connection.php';
 
 $content = '
 	<h2>Add a Student</h2>
+	<li><a href="deletestudent.php">Delete a student</a></li>
 	
 	<article>
 
@@ -35,7 +36,7 @@ $content = '
 			<label>Confirm Password:</label>
 				<input type="password" placeholder="**********" name="password2" required />
 
-			<input type="submit" value="Submit" name="submit" />
+			<input type="submit" value="Add" name="submit" />
 		</form>
 	</article>
 			';

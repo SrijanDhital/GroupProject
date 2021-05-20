@@ -13,6 +13,8 @@ if(isset($_SESSION['logged_as_admin']) && $_SESSION['logged_as_admin']==true){
 
 	$content = '
 		<h2>Add an Admin</h2>
+
+		<li><a href="deleteadmin.php">Delete an admin</a></li>
 		
 		<article>
 
@@ -31,7 +33,7 @@ if(isset($_SESSION['logged_as_admin']) && $_SESSION['logged_as_admin']==true){
 				<label>Confirm Password:</label>
 					<input type="password" placeholder="**********" name="password2" required />
 
-				<input type="submit" value="Submit" name="submit" />
+				<input type="submit" value="Add" name="submit" />
 			</form>
 		</article>
 				';

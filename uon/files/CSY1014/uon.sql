@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2021 at 10:17 AM
+-- Generation Time: May 19, 2021 at 05:18 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -55,7 +55,6 @@ CREATE TABLE `announcements` (
   `description` varchar(2000) NOT NULL,
   `staff_id` int(11) NOT NULL,
   `year` varchar(15) NOT NULL,
-  `module_id` varchar(10) NOT NULL,
   `posted_date` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -63,8 +62,8 @@ CREATE TABLE `announcements` (
 -- Dumping data for table `announcements`
 --
 
-INSERT INTO `announcements` (`announcement_id`, `topic`, `description`, `staff_id`, `year`, `module_id`, `posted_date`) VALUES
-(2, 'New Web Announcement', 'Dear students, I have posted a new file for all of you.', 5, 'L5', 'CSY2028', 'May 18,2021');
+INSERT INTO `announcements` (`announcement_id`, `topic`, `description`, `staff_id`, `year`, `posted_date`) VALUES
+(2, 'New Web Announcement', 'Dear students, I have posted a new file for all of you.', 5, 'L5', 'May 18,2021');
 
 -- --------------------------------------------------------
 
@@ -98,19 +97,8 @@ CREATE TABLE `module_contents` (
   `content_id` int(5) NOT NULL,
   `title` varchar(50) NOT NULL,
   `description` varchar(1000) NOT NULL,
-  `module_id` varchar(10) NOT NULL,
-  `staff_id` varchar(10) NOT NULL,
-  `file_name` varchar(50) NOT NULL,
   `file_location` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `module_contents`
---
-
-INSERT INTO `module_contents` (`content_id`, `title`, `description`, `module_id`, `staff_id`, `file_name`, `file_location`) VALUES
-(9, 'New Project', 'This is updated project from our group', 'CSY2027', '4', 'Paradox_ group project.pdf', 'files/CSY2027/Paradox_ group project.pdf'),
-(10, 'New Sql file', 'Please download the file', 'CSY1014', '4', 'uon.sql', 'files/CSY1014/uon.sql');
 
 -- --------------------------------------------------------
 
@@ -186,9 +174,7 @@ ALTER TABLE `modules`
 --
 ALTER TABLE `module_contents`
   ADD PRIMARY KEY (`content_id`),
-  ADD UNIQUE KEY `file_location` (`file_location`),
-  ADD UNIQUE KEY `title` (`title`),
-  ADD UNIQUE KEY `file_name` (`file_name`);
+  ADD UNIQUE KEY `file_location` (`file_location`);
 
 --
 -- Indexes for table `staffs`
@@ -213,7 +199,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `announcements`
@@ -225,7 +211,7 @@ ALTER TABLE `announcements`
 -- AUTO_INCREMENT for table `module_contents`
 --
 ALTER TABLE `module_contents`
-  MODIFY `content_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `content_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `staffs`
@@ -237,7 +223,7 @@ ALTER TABLE `staffs`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

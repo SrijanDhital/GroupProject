@@ -11,6 +11,7 @@ require 'functions/connection.php';
 
 $content = '
 	<h2>Add a Module</h2>
+	<li><a href="deletemodule.php">Delete a Module</a></li>
 	
 	<article>
 

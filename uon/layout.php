@@ -49,7 +49,7 @@
 					{
 
 						echo '<li><a href="index.php">Home</a></li>
-						<li><a href="students.php">My modules</a></li>
+						<li><a href="studentmodules.php">My modules</a></li>
 						<li><a href="announcement.php">Announcements</a></li>
 						<li><a href="logout.php">Logout</a></li>';
 					}

@@ -44,13 +44,14 @@ $content = '<h2>Post an Announcement</h2>
 	$year = $yearexc['year'];
 
 
-		$stmt = $pdo->prepare('INSERT INTO announcements (topic, description, staff_id, year, posted_date) VALUES (:topic, :description, :staff_id, :year, :today)');
+		$stmt = $pdo->prepare('INSERT INTO announcements (topic, description, staff_id, year, module_id, posted_date) VALUES (:topic, :description, :staff_id, :year, :module, :today)');
 
 		$criteria = [
 			'topic' => $_POST['topic'],
 			'description' => $_POST['description'],
 			'staff_id' => $staff,
 			'year' => $year,
+			'module' => $_POST['module'],
 			'today' => date("F j,Y")
 		];
 

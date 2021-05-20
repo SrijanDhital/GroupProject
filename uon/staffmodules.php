@@ -21,7 +21,7 @@ $content = '<h2>My Modules</h2><article>';
 		$content = $content . '<ul>';
 		foreach($results as $row)
 		{
-			$content = $content . '<li><a href = "staffmodules?row=' . $row['module_id'] . '.php">=> ' . $row['module_id'] . ' - ' . $row['module_name'] . '</a></li><br>';
+			$content = $content . '<li><a href = "modulecontents.php?module=' . $row['module_id'] . '">=> ' . $row['module_id'] . ' - ' . $row['module_name'] . '</a></li><br>';
 		}
 		$content = $content . '</ul></article>';
 	}

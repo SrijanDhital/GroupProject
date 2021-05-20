@@ -36,7 +36,7 @@ $content = '
 
 		<input type="submit" value="Upload" name="submit" />
 	</form>
-	
+
 </article>
 ';
 
@@ -59,20 +59,35 @@ $content = '
 
 					if(move_uploaded_file($tmp_dir, $location . $filename)){
 
-						$stmt = $pdo->prepare('INSERT INTO module_contents (title, description, file_location) VALUES(:title, :description, :file_location)');
+						$stmt = $pdo->prepare('INSERT INTO module_contents (title, description, module_id, staff_id, file_name, file_location) VALUES(:title, :description, :module, :staff, :name, :file_location)');
 
 						$criteria = [
 							'title' => $_POST['title'],
 							'description' => $_POST['description'],
+							'module' => $_POST['module'],
+							'staff' => $staff,
+							'name' => $filename,
 							'file_location' => $location . $filename
 						];
+						try{
+							$stmt->execute($criteria);
 
-						$stmt->execute($criteria);
-
-						// echo 'File has been successfully uploaded.';
-						echo '<script type="text/javascript">
-						alert("The file has been added successfully");
-						</script>';
+							// echo 'File has been successfully uploaded.';
+							echo '<script type="text/javascript">
+							alert("The file has been added successfully");
+							</script>';
+						}
+						catch(PDOException $e){
+							if ($e->errorInfo[1] == 1062) {
+			      				echo '<script type="text/javascript">
+								alert("The name already exists.");
+								</script>';
+							} else {
+							    echo '<script type="text/javascript">
+								alert("Error from: ' . $e->getMessage() . '");
+								</script>';
+							}
+						}
 
 					}
 				}
