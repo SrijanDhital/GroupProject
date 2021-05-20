@@ -50,6 +50,7 @@
 			else{
 				$content = $content . '<h3>No Announcements Yet</h3>';
 			}
+			
 		}
 		else {
 

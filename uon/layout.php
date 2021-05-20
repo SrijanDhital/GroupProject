@@ -23,15 +23,7 @@
 				<li><a href="#">Categories</a></li>
 				<li><a href="about.php">About us</a></li>
 
-				<?php 
-				if((isset($_SESSION['logged_as_student']) && ($_SESSION['logged_as_student'] == true)) || (isset($_SESSION['logged_as_staff']) && ($_SESSION['logged_as_staff'] == true)) || (isset($_SESSION['logged_as_admin']) && ($_SESSION['logged_as_admin'] = true)))
-					{
-						echo '<li><a href="logout.php">Logout</a></li>';
-					}
-					else {
-						echo '<li><a href="login.php">Login</a></li>';
-					}
-						?>
+				
 			</ul>
 		</nav>
 

@@ -107,7 +107,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="styles.css">
-	<title>Northampton News - Login</title>
+	<title>UoN - Login</title>
 </head>
 <body>
 	<div class="login">
