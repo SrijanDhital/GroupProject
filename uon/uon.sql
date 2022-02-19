@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2021 at 10:17 AM
+-- Generation Time: Feb 19, 2022 at 08:55 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -41,7 +41,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`admin_id`, `firstname`, `lastname`, `email`, `username`, `password`) VALUES
-(2, 'Srijan', 'Dhital', 'srijandhital@gmail.com', 'Srijan123', 'srijan');
+(11, 'Root', 'User', 'root@gmail.com', 'RootUser', 'root123');
 
 -- --------------------------------------------------------
 
@@ -59,13 +59,6 @@ CREATE TABLE `announcements` (
   `posted_date` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `announcements`
---
-
-INSERT INTO `announcements` (`announcement_id`, `topic`, `description`, `staff_id`, `year`, `module_id`, `posted_date`) VALUES
-(2, 'New Web Announcement', 'Dear students, I have posted a new file for all of you.', 5, 'L5', 'CSY2028', 'May 18,2021');
-
 -- --------------------------------------------------------
 
 --
@@ -78,15 +71,6 @@ CREATE TABLE `modules` (
   `staff_id` int(11) NOT NULL,
   `year` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `modules`
---
-
-INSERT INTO `modules` (`module_id`, `module_name`, `staff_id`, `year`) VALUES
-('CSY1014', 'Computer System', 4, 'L4'),
-('CSY2027', 'Group Project', 4, 'L5'),
-('CSY2028', 'Web Programming', 5, 'L5');
 
 -- --------------------------------------------------------
 
@@ -104,14 +88,6 @@ CREATE TABLE `module_contents` (
   `file_location` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `module_contents`
---
-
-INSERT INTO `module_contents` (`content_id`, `title`, `description`, `module_id`, `staff_id`, `file_name`, `file_location`) VALUES
-(9, 'New Project', 'This is updated project from our group', 'CSY2027', '4', 'Paradox_ group project.pdf', 'files/CSY2027/Paradox_ group project.pdf'),
-(10, 'New Sql file', 'Please download the file', 'CSY1014', '4', 'uon.sql', 'files/CSY1014/uon.sql');
-
 -- --------------------------------------------------------
 
 --
@@ -127,14 +103,6 @@ CREATE TABLE `staffs` (
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `staffs`
---
-
-INSERT INTO `staffs` (`staff_id`, `firstname`, `lastname`, `email`, `username`, `password`) VALUES
-(4, 'Suresh', 'Gautam', 'gautamsuresh@gmail.com', 'SureshGautam1', 'suresh'),
-(5, 'Ankit', 'Thapa', 'ankitthapa1@gmail.com', 'ThapaAnkit', 'ankit');
-
 -- --------------------------------------------------------
 
 --
@@ -149,13 +117,6 @@ CREATE TABLE `students` (
   `year` varchar(15) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `students`
---
-
-INSERT INTO `students` (`student_id`, `firstname`, `lastname`, `email`, `year`, `password`) VALUES
-(1, 'Dharmendra', 'Singh', 'singhdharmendra@gmail.com', 'L5', 'dharmendra');
 
 --
 -- Indexes for dumped tables
@@ -213,19 +174,19 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
-  MODIFY `announcement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `announcement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `module_contents`
 --
 ALTER TABLE `module_contents`
-  MODIFY `content_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `content_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `staffs`
@@ -237,7 +198,7 @@ ALTER TABLE `staffs`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
